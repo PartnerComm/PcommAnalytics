@@ -1,11 +1,29 @@
 # PcommAnalytics
 PartnerComm Analytics JS
 
+## Version Notes
+
+1.0.0: Initial commit
+
+1.0.1: Update Vimeo to support dynamic video loading
+
 ## Event Tracking
 
 ### `PcommAnalytics`
 
 `PcommAnalytics` is a JavaScript class created for use in the base theme.
+
+Included in package.json: `"pcommanalytics": "PartnerComm/PcommAnalytics#master"`
+
+In order to pull the latest version, delete the node module and run `npm i`.
+
+Include the modules you need in your projects js: 
+
+`import {PcommAnalyticsExternalLinks, PcommAnalyticsVimeoGA, PcommAnalyticsDataGa, PcommAnalyticsVimeoGA} from "pcommanalytics";`
+
+Modules must still be instantiated, i.e.
+
+`new PcommAnalyticsExternalLinks();` or `window.vimeoGA = new PcommAnalyticsVimeoGA();`
 
 #### PcommAnalyticsExternalLinks
 
@@ -52,6 +70,22 @@ The `PcommAnalytics` class can be imported into your JavaScript partials for tra
 4. Track the event:
 
     `analytics.trackEvent();` 
+
+### Vimeo GA
+
+`new PcommAnalyticsVimeoGA();` will scan your page for available Vimeo videos and add GA tracking to them automatically.
+
+If you are dynamically loading videos there are a few more steps to take after inserting your video on the page.
+
+Instead of simply calling `new PcommAnalyticsVimeoGA();`, you will need to assign it like `window.vimeoGA = new PcommAnalyticsVimeoGA();`
+
+This will give you access to the instance at `window.vimeoGA`, where you can pass your new iFrame object to it.
+
+`window.vimeoGA.processIframe(iframe, index);`
+
+`iFrame` is the `<iframe>` element you've created.
+
+`index` is the corresponding index of total Vimeo video possibilities on the page. You'll want to carefully figure out how you want to handle this. Vimeo Analytics will use this index to keep track of which videos have played for a given length of time.
 
 ### Testing
 
