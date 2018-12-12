@@ -1,5 +1,5 @@
 /*
- * PcommAnalyticsVimeoGa.js | v0.1
+ * PcommAnalyticsVimeoGa.js
  */
 
 import {PcommAnalytics} from './PcommAnalytics'
@@ -15,26 +15,30 @@ class PcommAnalyticsVimeoGA extends PcommAnalytics {
     const vimeoGAJS = {};
     const elements = document.querySelectorAll('iframe[src*="player.vimeo.com"]');
     [].forEach.call(elements, (el, index) => {
-      const iframeIndex = index;
-      const playerIdString = 'vimeo-player-' + iframeIndex;
-      const src = el.getAttribute('src').split('?')[0] + '?player_id=' + playerIdString;
-      el.setAttribute('src', src);
-      el.setAttribute('id', playerIdString);
-      el.dataset.player_index = iframeIndex;
-      this.eventMarker[iframeIndex] = {
-        'progress25': false,
-        'progress50': false,
-        'progress75': false,
-        'videoPlayed': false,
-        'videoPaused': false,
-        'videoResumed': false,
-        'videoSeeking': false,
-        'videoCompleted': false,
-        'timePercentComplete': 0
-      };
+      this.processIframe(el, index);
     });
     // Listen for messages from the player
     window.addEventListener('message', (e) => this.onMessageReceived(e), false);
+  }
+
+  processIframe(el, index) {
+    const iframeIndex = index;
+    const playerIdString = 'vimeo-player-' + iframeIndex;
+    const src = el.getAttribute('src').split('?')[0] + '?player_id=' + playerIdString;
+    el.setAttribute('src', src);
+    el.setAttribute('id', playerIdString);
+    el.dataset.player_index = iframeIndex;
+    this.eventMarker[iframeIndex] = {
+      'progress25': false,
+      'progress50': false,
+      'progress75': false,
+      'videoPlayed': false,
+      'videoPaused': false,
+      'videoResumed': false,
+      'videoSeeking': false,
+      'videoCompleted': false,
+      'timePercentComplete': 0
+    };
   }
 
   onMessageReceived(e) {
@@ -85,29 +89,28 @@ class PcommAnalyticsVimeoGA extends PcommAnalytics {
   }
 
   getLabel(iframeEl) {
-    var iframeSrc = iframeEl.getAttribute('src').split('?')[0];
-    var label = iframeSrc;
+    let iframeSrc = iframeEl.getAttribute('src').split('?')[0];
     if (iframeEl.getAttribute('title')) {
-      label += ' (' + iframeEl.getAttribute('title') + ')';
+      iframeSrc += ' (' + iframeEl.getAttribute('title') + ')';
     }
-    return label;
+    return iframeSrc;
   }
 
   post(action, value, iframe) {
-    var data = {
+    let data = {
       method: action
     };
     if (value) {
       data.value = value;
     }
     // Source URL
-    var iframeSrc = iframe.getAttribute('src').split('?')[0];
+    let iframeSrc = iframe.getAttribute('src').split('?')[0];
     iframe.contentWindow.postMessage(JSON.stringify(data), iframeSrc);
   }
 
   onReady() {
     const elements = document.querySelectorAll('iframe[src*="player.vimeo.com"]');
-    [].forEach.call(elements, (el, index) => {
+    [].forEach.call(elements, (el) => {
       this.post('addEventListener', 'play', el);
       this.post('addEventListener', 'seek', el);
       this.post('addEventListener', 'pause', el);
@@ -117,7 +120,7 @@ class PcommAnalyticsVimeoGA extends PcommAnalytics {
   }
 
   onPause(iframeEl) {
-    var index = iframeEl.dataset.player_index;
+    let index = iframeEl.dataset.player_index;
     if (this.eventMarker[index].percent < 99 && !this.eventMarker[index].videoPaused) {
       this.sendEvent(iframeEl, 'Paused video');
       this.eventMarker[index].videoPaused = true; // Avoid subsequent pause trackings
@@ -128,7 +131,6 @@ class PcommAnalyticsVimeoGA extends PcommAnalytics {
     let progress;
     const iframeId = iframeEl.dataset.player_index;
     this.eventMarker[iframeId].percent = Math.round((data.percent) * 100); // Round to a whole number
-
     if (this.eventMarker[iframeId].percent > 24 && !this.eventMarker[iframeId].progress25) {
       progress = 'Played video: 25%';
       this.eventMarker[iframeId].progress25 = true;
@@ -154,7 +156,7 @@ class PcommAnalyticsVimeoGA extends PcommAnalytics {
       category: 'Vimeo',
       action: action,
       label: this.getLabel(iframeEl)
-    }
+    };
     this.trackEvent();
   }
 }
