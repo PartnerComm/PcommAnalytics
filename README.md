@@ -3,9 +3,12 @@ PartnerComm Analytics JS
 
 ## Version Notes
 
-1.0.0: Initial commit
+1.0.2: Update Vimeo data checks
 
 1.0.1: Update Vimeo to support dynamic video loading
+
+1.0.0: Initial commit
+
 
 ## Event Tracking
 

@@ -47,7 +47,13 @@ class PcommAnalyticsVimeoGA extends PcommAnalytics {
       return;
     }
     const data = JSON.parse(e.data);
+    if (!data.player_id) {
+      return;
+    }
     const iframeEl = document.getElementById(data.player_id);
+    if (!iframeEl) {
+      return;
+    }
     const index = iframeEl.dataset.player_index;
     switch (data.event) {
       case 'ready':
