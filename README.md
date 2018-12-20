@@ -3,6 +3,8 @@ PartnerComm Analytics JS
 
 ## Version Notes
 
+1.0.3: Update Vimeo label to only include video id
+
 1.0.2: Update Vimeo data checks
 
 1.0.1: Update Vimeo to support dynamic video loading

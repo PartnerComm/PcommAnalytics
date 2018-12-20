@@ -1,6 +1,6 @@
 {
   "name": "pcommanalytics",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "PartnerComm analytics platform",
   "main": "index.js",
   "scripts": {

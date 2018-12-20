@@ -95,11 +95,9 @@ class PcommAnalyticsVimeoGA extends PcommAnalytics {
   }
 
   getLabel(iframeEl) {
-    let iframeSrc = iframeEl.getAttribute('src').split('?')[0];
-    if (iframeEl.getAttribute('title')) {
-      iframeSrc += ' (' + iframeEl.getAttribute('title') + ')';
-    }
-    return iframeSrc;
+    let label = iframeEl.getAttribute('src').split('?')[0];
+    label = label.replace('https://player.vimeo.com/video/', '');
+    return label;
   }
 
   post(action, value, iframe) {
