@@ -13,7 +13,9 @@ import {PcommAnalytics} from './PcommAnalytics';
 class PcommAnalyticsDataGa extends PcommAnalytics {
   constructor() {
     super();
+    this.clickListener();
   }
+
   clickListener() {
     const elements = this.getGaElements();
     [].forEach.call(elements, (el) => {
@@ -30,6 +32,7 @@ class PcommAnalyticsDataGa extends PcommAnalytics {
         // go to the href
         this.goToHref(el, e);
       }
+
     });
   }
 
