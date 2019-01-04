@@ -9,6 +9,7 @@ class PcommAnalyticsVimeoGA extends PcommAnalytics {
     super();
     this.eventMarker = {};
     this.init();
+    this.listening = false;
   }
 
   init() {
@@ -19,7 +20,10 @@ class PcommAnalyticsVimeoGA extends PcommAnalytics {
       }
     });
     // Listen for messages from the player
-    window.addEventListener('message', (e) => this.onMessageReceived(e), false);
+    if (!this.listening) {
+      this.listening = true;
+      window.addEventListener('message', (e) => this.onMessageReceived(e), false);
+    }
   }
 
   processIframe(el, index) {
@@ -125,11 +129,14 @@ class PcommAnalyticsVimeoGA extends PcommAnalytics {
   onReady() {
     const elements = document.querySelectorAll('iframe[src*="player.vimeo.com"]');
     [].forEach.call(elements, (el) => {
-      this.post('addEventListener', 'play', el);
-      this.post('addEventListener', 'seek', el);
-      this.post('addEventListener', 'pause', el);
-      this.post('addEventListener', 'finish', el);
-      this.post('addEventListener', 'playProgress', el);
+      if (el.dataset.listener_attached === undefined) {
+        el.dataset.listener_attached = 1;
+        this.post('addEventListener', 'play', el);
+        this.post('addEventListener', 'seek', el);
+        this.post('addEventListener', 'pause', el);
+        this.post('addEventListener', 'finish', el);
+        this.post('addEventListener', 'playProgress', el);
+      }
     });
   }
 
