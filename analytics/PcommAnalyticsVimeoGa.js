@@ -12,10 +12,11 @@ class PcommAnalyticsVimeoGA extends PcommAnalytics {
   }
 
   init() {
-    const vimeoGAJS = {};
     const elements = document.querySelectorAll('iframe[src*="player.vimeo.com"]');
     [].forEach.call(elements, (el, index) => {
-      this.processIframe(el, index);
+      if (el.dataset.player_index === undefined) {
+        this.processIframe(el, index);;
+      }
     });
     // Listen for messages from the player
     window.addEventListener('message', (e) => this.onMessageReceived(e), false);
