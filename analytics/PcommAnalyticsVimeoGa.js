@@ -7,28 +7,35 @@ import {PcommAnalytics} from './PcommAnalytics'
 class PcommAnalyticsVimeoGA extends PcommAnalytics {
   constructor() {
     super();
-    this.eventMarker = {};
     this.init();
+    this.listening = false;
   }
 
   init() {
-    const vimeoGAJS = {};
+    window.PcommAnalytics = window.PcommAnalytics || {};
+    window.PcommAnalytics.vimeo = window.PcommAnalytics.vimeo || {};
+    window.PcommAnalytics.vimeo.eventMarkers = window.PcommAnalytics.vimeo.eventMarkers || {};
+
     const elements = document.querySelectorAll('iframe[src*="player.vimeo.com"]');
     [].forEach.call(elements, (el, index) => {
-      this.processIframe(el, index);
+      if (el.dataset.player_index === undefined) {
+        this.processIframe(el, index);
+      }
     });
     // Listen for messages from the player
-    window.addEventListener('message', (e) => this.onMessageReceived(e), false);
+    if (!this.listening) {
+      this.listening = true;
+      window.addEventListener('message', (e) => this.onMessageReceived(e), false);
+    }
   }
 
   processIframe(el, index) {
-    const iframeIndex = index;
-    const playerIdString = 'vimeo-player-' + iframeIndex;
+    const playerIdString = 'pcomm-ga-vimeo-player-' + index;
     const src = el.getAttribute('src').split('?')[0] + '?player_id=' + playerIdString;
     el.setAttribute('src', src);
     el.setAttribute('id', playerIdString);
-    el.dataset.player_index = iframeIndex;
-    this.eventMarker[iframeIndex] = {
+    el.dataset.player_index = index;
+    window.PcommAnalytics.vimeo.eventMarkers[index] = {
       'progress25': false,
       'progress50': false,
       'progress75': false,
@@ -46,7 +53,16 @@ class PcommAnalyticsVimeoGA extends PcommAnalytics {
       console.warn('Tracker is missing!');
       return;
     }
-    const data = JSON.parse(e.data);
+    let data = e.data;
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (error) {
+        data = false;
+        console.log(error);
+      }
+    }
+
     if (!data.player_id) {
       return;
     }
@@ -55,6 +71,7 @@ class PcommAnalyticsVimeoGA extends PcommAnalytics {
       return;
     }
     const index = iframeEl.dataset.player_index;
+    const marker = window.PcommAnalytics.vimeo.eventMarkers[index];
     switch (data.event) {
       case 'ready':
         this.onReady();
@@ -65,19 +82,19 @@ class PcommAnalyticsVimeoGA extends PcommAnalytics {
         break;
 
       case 'seek':
-        if (iframeEl.dataset.seek && !this.eventMarker[index].videoSeeking) {
+        if (iframeEl.dataset.seek && !marker.videoSeeking) {
           this.sendEvent(iframeEl, 'Skipped video forward or backward');
-          this.eventMarker[index].videoSeeking = true; // Avoid subsequent seek trackings
+          marker.videoSeeking = true; // Avoid subsequent seek trackings
         }
         break;
 
       case 'play':
-        if (!this.eventMarker[index].videoPlayed) {
+        if (!marker.videoPlayed) {
           this.sendEvent(iframeEl, 'Started video');
-          this.eventMarker[index].videoPlayed = true; // Avoid subsequent play trackings
-        } else if (!this.eventMarker[index].videoResumed && this.eventMarker[index].videoPaused) {
+          marker.videoPlayed = true; // Avoid subsequent play trackings
+        } else if (!marker.videoResumed && marker.videoPaused) {
           this.sendEvent(iframeEl, 'Resumed video');
-          this.eventMarker[index].videoResumed = true; // Avoid subsequent resume trackings
+          marker.videoResumed = true; // Avoid subsequent resume trackings
         }
         break;
 
@@ -86,12 +103,14 @@ class PcommAnalyticsVimeoGA extends PcommAnalytics {
         break;
 
       case 'finish':
-        if (!this.eventMarker[index].videoCompleted) {
+        if (!marker.videoCompleted) {
           this.sendEvent(iframeEl, 'Completed video');
-          this.eventMarker[index].videoCompleted = true; // Avoid subsequent finish trackings
+          marker.videoCompleted = true; // Avoid subsequent finish trackings
         }
         break;
     }
+
+    window.PcommAnalytics.vimeo.eventMarkers[index] = marker;
   }
 
   getLabel(iframeEl) {
@@ -115,44 +134,53 @@ class PcommAnalyticsVimeoGA extends PcommAnalytics {
   onReady() {
     const elements = document.querySelectorAll('iframe[src*="player.vimeo.com"]');
     [].forEach.call(elements, (el) => {
-      this.post('addEventListener', 'play', el);
-      this.post('addEventListener', 'seek', el);
-      this.post('addEventListener', 'pause', el);
-      this.post('addEventListener', 'finish', el);
-      this.post('addEventListener', 'playProgress', el);
+      if (el.dataset.listener_attached === undefined) {
+        el.dataset.listener_attached = 1;
+        this.post('addEventListener', 'play', el);
+        this.post('addEventListener', 'seek', el);
+        this.post('addEventListener', 'pause', el);
+        this.post('addEventListener', 'finish', el);
+        this.post('addEventListener', 'playProgress', el);
+      }
     });
   }
 
   onPause(iframeEl) {
     let index = iframeEl.dataset.player_index;
-    if (this.eventMarker[index].percent < 99 && !this.eventMarker[index].videoPaused) {
+    const marker = window.PcommAnalytics.vimeo.eventMarkers[index];
+    if (marker.percent < 99 && !marker.videoPaused) {
       this.sendEvent(iframeEl, 'Paused video');
-      this.eventMarker[index].videoPaused = true; // Avoid subsequent pause trackings
+      marker.videoPaused = true; // Avoid subsequent pause trackings
     }
+
+    window.PcommAnalytics.vimeo.eventMarkers[index] = marker;
   }
 
   onPlayProgress(data, iframeEl) {
     let progress;
-    const iframeId = iframeEl.dataset.player_index;
-    this.eventMarker[iframeId].percent = Math.round((data.percent) * 100); // Round to a whole number
-    if (this.eventMarker[iframeId].percent > 24 && !this.eventMarker[iframeId].progress25) {
+    const index = iframeEl.dataset.player_index;
+    const marker = window.PcommAnalytics.vimeo.eventMarkers[index];
+    marker.percent = Math.round((data.percent) * 100); // Round to a whole number
+    if (marker.percent > 24 && !marker.progress25) {
       progress = 'Played video: 25%';
-      this.eventMarker[iframeId].progress25 = true;
+      marker.progress25 = true;
     }
 
-    if (this.eventMarker[iframeId].percent > 49 && !this.eventMarker[iframeId].progress50) {
+    if (marker.percent > 49 && !marker.progress50) {
       progress = 'Played video: 50%';
-      this.eventMarker[iframeId].progress50 = true;
+      marker.progress50 = true;
     }
 
-    if (this.eventMarker[iframeId].percent > 74 && !this.eventMarker[iframeId].progress75) {
+    if (marker.percent > 74 && !marker.progress75) {
       progress = 'Played video: 75%';
-      this.eventMarker[iframeId].progress75 = true;
+      marker.progress75 = true;
     }
 
     if (progress) {
       this.sendEvent(iframeEl, progress);
     }
+
+    window.PcommAnalytics.vimeo.eventMarkers[index] = marker;
   }
 
   sendEvent(iframeEl, action) {

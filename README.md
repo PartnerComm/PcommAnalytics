@@ -3,6 +3,8 @@ PartnerComm Analytics JS
 
 ## Version Notes
 
+1.0.5: Adds dynamic site support for Vimeo
+
 1.0.4: Adds clickListener to DataGa constructor
 
 1.0.3: Update Vimeo label to only include video id
