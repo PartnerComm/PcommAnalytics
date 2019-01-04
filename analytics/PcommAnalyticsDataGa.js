@@ -37,8 +37,7 @@ class PcommAnalyticsDataGa extends PcommAnalytics {
   }
 
   getGaElements() {
-    const elements = document.querySelectorAll('[data-ga]');
-    return elements;
+    return document.querySelectorAll('[data-ga]');
   }
 
 }
