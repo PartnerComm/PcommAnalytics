@@ -18,6 +18,7 @@ class PcommAnalytics {
 
   constructor(event) {
     this.event = event;
+    window.PcommAnalytics = window.PcommAnalytics || {};
   }
 
   goToHref(el, e) {
