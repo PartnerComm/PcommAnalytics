@@ -46,7 +46,16 @@ class PcommAnalyticsVimeoGA extends PcommAnalytics {
       console.warn('Tracker is missing!');
       return;
     }
-    const data = JSON.parse(e.data);
+    let data = e.data;
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (error) {
+        data = false;
+        console.log(error);
+      }
+    }
+
     if (!data.player_id) {
       return;
     }
