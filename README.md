@@ -3,6 +3,8 @@ PartnerComm Analytics JS
 
 ## Version Notes
 
+1.0.6: Log the current analytics version
+
 1.0.5: Adds dynamic site support for Vimeo
 
 1.0.4: Adds clickListener to DataGa constructor
@@ -24,7 +26,7 @@ PartnerComm Analytics JS
 
 Included in package.json: `"pcommanalytics": "PartnerComm/PcommAnalytics#master"`
 
-In order to pull the latest version, delete the node module and run `npm i`.
+In order to pull the latest version run `npm update pcommanalytics`.
 
 Include the modules you need in your projects js: 
 
