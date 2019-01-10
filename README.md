@@ -3,6 +3,8 @@ PartnerComm Analytics JS
 
 ## Version Notes
 
+1.0.7: Move the current analytics version to the global object
+
 1.0.6: Log the current analytics version
 
 1.0.5: Adds dynamic site support for Vimeo

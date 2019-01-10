@@ -13,12 +13,13 @@
 * Events are automatically logged in the console on pcommstaging and localhost
 *
 */
+import Package from '../package.json';
 
 class PcommAnalytics {
 
   constructor(event) {
     this.event = event;
-    window.PcommAnalytics = window.PcommAnalytics || {};
+    window.PcommAnalytics = window.PcommAnalytics || { version: Package.version };
   }
 
   goToHref(el, e) {
