@@ -18,8 +18,5 @@
   "bugs": {
     "url": "https://github.com/PartnerComm/PcommAnalytics/issues"
   },
-  "homepage": "https://github.com/PartnerComm/PcommAnalytics#readme",
-  "devDependencies": {
-    "@babel/preset-env": "^7.2.3"
-  }
+  "homepage": "https://github.com/PartnerComm/PcommAnalytics#readme"
 }
