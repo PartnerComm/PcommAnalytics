@@ -66,7 +66,7 @@ Each additional data attribute is mapped to the corresponding Google Analytics p
 Example: `<button data-ga="true" data-ga-action="button push" data-ga-label="that one button">click me</button>` 
 
 In order to eliminate confusion and case sensitive values, each value is converted to lowercase prior to being sent to Google Analytics.
-
+___
 #### Tracking via custom partial or function
 
 The `PcommAnalytics` class can be imported into your JavaScript partials for tracking custom events.
@@ -85,7 +85,7 @@ The `PcommAnalytics` class can be imported into your JavaScript partials for tra
 4. Track the event:
 
     `analytics.trackEvent();` 
-
+___
 ### Vimeo GA
 
 `new PcommAnalyticsVimeoGA();` will scan your page for available Vimeo videos and add GA tracking to them automatically.
@@ -102,6 +102,16 @@ This will give you access to the instance at `window.vimeoGA`, where you can pas
 
 `index` is the corresponding index of total Vimeo video possibilities on the page. You'll want to carefully figure out how you want to handle this. Vimeo Analytics will use this index to keep track of which videos have played for a given length of time.
 
+#### Dynamic Rendering of Vimeo iFrames
+
+If you need to dynamically render Vimeo iframes, there are a few additional steps to take.
+
+1. Import the script into your component `import {PcommAnalyticsVimeoGA} from "pcommanalytics";`
+2. Make it accessible in your component `const vimeoGA = new PcommAnalyticsVimeoGA();`
+3. Get or create the iFrame as an element `var el = this.$refs.player.$el.childNodes[0];` (your method will vary)
+4. Delete data-listener_attached `delete el.dataset.listener_attached;` (or it will not attach a new listener)
+5. Register the new video `vimeoGA.processIframe(el, index);`
+___
 ### Testing
 
 Testing is automated on localhost and pcommstaging sites. Any time an event is sent to Google Analytics, a console log will appear with that event.
