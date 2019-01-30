@@ -90,18 +90,6 @@ ___
 
 `new PcommAnalyticsVimeoGA();` will scan your page for available Vimeo videos and add GA tracking to them automatically.
 
-If you are dynamically loading videos there are a few more steps to take after inserting your video on the page.
-
-Instead of simply calling `new PcommAnalyticsVimeoGA();`, you will need to assign it like `window.vimeoGA = new PcommAnalyticsVimeoGA();`
-
-This will give you access to the instance at `window.vimeoGA`, where you can pass your new iFrame object to it.
-
-`window.vimeoGA.processIframe(iframe, index);`
-
-`iFrame` is the `<iframe>` element you've created.
-
-`index` is the corresponding index of total Vimeo video possibilities on the page. You'll want to carefully figure out how you want to handle this. Vimeo Analytics will use this index to keep track of which videos have played for a given length of time.
-
 #### Dynamic Rendering of Vimeo iFrames
 
 If you need to dynamically render Vimeo iframes, there are a few additional steps to take.
