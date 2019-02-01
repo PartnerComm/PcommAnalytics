@@ -8,7 +8,7 @@ const event = {
   'label': 'label test',
   'category': 'category test',
   'action': 'action test',
-  'value': 'value test'
+  'value': 0
 };
 
 /* CREATE A NEW ANALYTICS OBJECT AND PASS THE EVENT */

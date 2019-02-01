@@ -45,9 +45,9 @@ class PcommAnalytics {
       return true;
     }
     // set defaults
-    const category = event.category ? event.category.toLowerCase() : 'site';
-    const action = event.action ? event.action.toLowerCase() : 'general action';
-    const label = event.label ? event.label.toLowerCase() : '';
+    const category = event.category ? event.category.toString().toLowerCase() : 'site';
+    const action = event.action ? event.action.toString().toLowerCase() : 'general action';
+    const label = event.label ? event.label.toString().toLowerCase() : '';
     const value = event.value ? event.value : 0;
     const noninteraction = event.noninteraction || true;
 
