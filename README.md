@@ -1,27 +1,6 @@
 # PcommAnalytics
 PartnerComm Analytics JS
 
-## Version Notes
-
-1.0.8: Simplify return statement
-
-1.0.7: Move the current analytics version to the global object
-
-1.0.6: Log the current analytics version
-
-1.0.5: Adds dynamic site support for Vimeo
-
-1.0.4: Adds clickListener to DataGa constructor
-
-1.0.3: Update Vimeo label to only include video id
-
-1.0.2: Update Vimeo data checks
-
-1.0.1: Update Vimeo to support dynamic video loading
-
-1.0.0: Initial commit
-
-
 ## Event Tracking
 
 ### `PcommAnalytics`
@@ -107,3 +86,26 @@ Testing is automated on localhost and pcommstaging sites. Any time an event is s
 If the item being tracked is a link, the console log will appear for one second before navigating to the link. This pause only occurs on localhost or pcommstaging.
 
 If Google Analytics has not been set up on a site, there will be a console log indicating so.
+
+___
+## Version Notes
+
+1.0.9: bugfix: category, action, and label might not be strings
+
+1.0.8: Simplify return statement
+
+1.0.7: Move the current analytics version to the global object
+
+1.0.6: Log the current analytics version
+
+1.0.5: Adds dynamic site support for Vimeo
+
+1.0.4: Adds clickListener to DataGa constructor
+
+1.0.3: Update Vimeo label to only include video id
+
+1.0.2: Update Vimeo data checks
+
+1.0.1: Update Vimeo to support dynamic video loading
+
+1.0.0: Initial commit
