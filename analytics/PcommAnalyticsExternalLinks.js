@@ -9,11 +9,34 @@ class PcommAnalyticsExternalLinks extends PcommAnalytics {
     super();
     this.trackExternalLinks();
   }
+
   trackExternalLinks() {
     const elements = document.querySelectorAll('a');
     [].forEach.call(elements, (el) => {
-      if (el.hostname === window.location.hostname || !el.href) {
-        return false;
+      try {
+        if (el.hostname === window.location.hostname || !el.href) {
+          return false;
+        }
+      } catch (e) {
+        const url = el.getAttribute('href');
+        if (!url) {
+          return false;
+        }
+        let hostname;
+        //find & remove protocol (http, ftp, etc.) and get hostname
+        if (url.indexOf("//") > -1) {
+          hostname = url.split('/')[2];
+        } else {
+          hostname = url.split('/')[0];
+        }
+        //find & remove port number
+        hostname = hostname.split(':')[0];
+        //find & remove "?"
+        hostname = hostname.split('?')[0];
+
+        if (hostname === window.location.hostname) {
+          return false;
+        }
       }
       el.onclick = (e) => {
         // build the ga event
