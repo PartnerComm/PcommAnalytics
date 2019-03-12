@@ -63,7 +63,7 @@ class PcommAnalytics {
 
   testEnv() {
     const a = window.location.hostname;
-    return a === 'localhost' || a.includes('pcommstaging');
+    return a === 'localhost' || a.indexOf('pcommstaging') >= 0;
   }
 
   logEvent() {

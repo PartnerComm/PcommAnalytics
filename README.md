@@ -90,6 +90,8 @@ If Google Analytics has not been set up on a site, there will be a console log i
 ___
 ## Version Notes
 
+1.0.11: IE bugfix: Use indexOf instead of includes
+
 1.0.10: IE bugfix: trackExternalLinks
 
 1.0.9: bugfix: category, action, and label might not be strings

@@ -54,10 +54,10 @@ class PcommAnalyticsExternalLinks extends PcommAnalytics {
   }
 
   getLinkType(url) {
-    if (url.includes('mailto:')) {
+    if (url.indexOf('mailto:') >= 0) {
       return 'email'
     }
-    if (url.includes('tel:')) {
+    if (url.indexOf('tel:') >= 0) {
       return 'phone'
     }
     const fileTypes = new RegExp(/\.(doc|docx*|xlsx*|ppt|pptx*|zip|pdf|xls|xlsx)$/i);
