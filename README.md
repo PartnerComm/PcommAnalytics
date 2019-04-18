@@ -1,6 +1,26 @@
 # PcommAnalytics
 PartnerComm Analytics JS
 
+## Samples
+
+```$xslt
+import {PcommAnalytics, pcommAnalyticsTrackEvent} from '~PcommAnalytics'
+
+const event = {
+  'label': 'label test',
+  'category': 'category test',
+  'action': 'action test',
+  'value': 0
+};
+
+/* CREATE A NEW ANALYTICS OBJECT AND PASS THE EVENT */
+const analytics = new PcommAnalytics(event);
+analytics.trackEvent();
+
+/* OR USE THE CONVENIENCE METHOD */
+pcommAnalyticsTrackEvent(event);
+```
+
 ## Event Tracking
 
 ### `PcommAnalytics`
