@@ -2,7 +2,7 @@
   "name": "pcommanalytics",
   "version": "1.0.11",
   "description": "PartnerComm analytics platform",
-  "main": "index.js",
+  "main": "dist/analytics.js",
   "scripts": {
     "dev": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
