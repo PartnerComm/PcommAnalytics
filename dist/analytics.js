@@ -309,17 +309,18 @@ function (_PcommAnalytics) {
       var _this2 = this;
 
       var elements = document.querySelectorAll('[data-ga]');
+      console.log(elements);
       [].forEach.call(elements, function (el) {
         el.onclick = function (e) {
           // build the ga event
-          _this2.event = {
+          var event = {
             category: el.getAttribute('data-ga-category') || 'click-tracker',
             action: el.getAttribute('data-ga-action') || 'click',
             label: el.getAttribute('data-ga-label') || el.innerText.toLowerCase().trim(),
             value: el.getAttribute('data-ga-value') || 0
           }; // track the event
 
-          _this2.trackEvent(); // go to the href
+          _this2.trackEvent(event); // go to the href
 
 
           _this2.goToHref(el, e);
@@ -433,13 +434,13 @@ function (_PcommAnalytics) {
 
         el.onclick = function (e) {
           // build the ga event
-          _this2.event = {
+          var event = {
             category: 'links',
             action: _this2.getLinkType(el.href),
             label: el.href
           }; // track the event
 
-          _this2.trackEvent(); // go to the href
+          _this2.trackEvent(event); // go to the href
 
 
           _this2.goToHref(el, e);
@@ -742,12 +743,12 @@ function (_PcommAnalytics) {
   }, {
     key: "sendEvent",
     value: function sendEvent(iframeEl, action) {
-      this.event = {
+      var event = {
         category: 'Vimeo',
         action: action,
         label: this.getLabel(iframeEl)
       };
-      this.trackEvent();
+      this.trackEvent(event);
     }
   }]);
 
@@ -765,7 +766,7 @@ function (_PcommAnalytics) {
 /*! exports provided: name, version, description, main, scripts, repository, keywords, author, license, bugs, homepage, dependencies, devDependencies, default */
 /***/ (function(module) {
 
-module.exports = {"name":"pcommanalytics","version":"1.0.11","description":"PartnerComm analytics platform","main":"dist/analytics.js","scripts":{"dev":"NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js","watch":"NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js","production":"NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"},"repository":{"type":"git","url":"git+https://github.com/PartnerComm/PcommAnalytics.git"},"keywords":["analytics"],"author":"PartnerComm","license":"ISC","bugs":{"url":"https://github.com/PartnerComm/PcommAnalytics/issues"},"homepage":"https://github.com/PartnerComm/PcommAnalytics#readme","dependencies":{"laravel-mix":"^4.0.15"},"devDependencies":{"vue-template-compiler":"^2.6.10"}};
+module.exports = {"name":"pcommanalytics","version":"2.0.0","description":"PartnerComm analytics platform","main":"dist/analytics.js","scripts":{"dev":"NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js","watch":"NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js","production":"NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"},"repository":{"type":"git","url":"git+https://github.com/PartnerComm/PcommAnalytics.git"},"keywords":["analytics"],"author":"PartnerComm","license":"ISC","bugs":{"url":"https://github.com/PartnerComm/PcommAnalytics/issues"},"homepage":"https://github.com/PartnerComm/PcommAnalytics#readme","dependencies":{"laravel-mix":"^4.0.15"},"devDependencies":{"vue-template-compiler":"^2.6.10"}};
 
 /***/ }),
 
