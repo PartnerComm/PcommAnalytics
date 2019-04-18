@@ -309,7 +309,6 @@ function (_PcommAnalytics) {
       var _this2 = this;
 
       var elements = document.querySelectorAll('[data-ga]');
-      console.log(elements);
       [].forEach.call(elements, function (el) {
         el.onclick = function (e) {
           // build the ga event
