@@ -4,21 +4,13 @@ PartnerComm Analytics JS
 ## Samples
 
 ```$xslt
-import {PcommAnalytics, pcommAnalyticsTrackEvent} from '~PcommAnalytics'
-
 const event = {
   'label': 'label test',
   'category': 'category test',
   'action': 'action test',
   'value': 0
 };
-
-/* CREATE A NEW ANALYTICS OBJECT AND PASS THE EVENT */
-const analytics = new PcommAnalytics(event);
-analytics.trackEvent();
-
-/* OR USE THE CONVENIENCE METHOD */
-pcommAnalyticsTrackEvent(event);
+window.PcommAnalytics.trackEvent(event);
 ```
 
 ## Event Tracking
@@ -27,17 +19,9 @@ pcommAnalyticsTrackEvent(event);
 
 `PcommAnalytics` is a JavaScript class created for use in the base theme.
 
-Included in package.json: `"pcommanalytics": "PartnerComm/PcommAnalytics#master"`
+Included in package.json: `"pcommanalytics": "PartnerComm/PcommAnalytics#dist"`
 
 In order to pull the latest version run `npm update pcommanalytics`.
-
-Include the modules you need in your projects js: 
-
-`import {PcommAnalyticsExternalLinks, PcommAnalyticsVimeoGA, PcommAnalyticsDataGa, PcommAnalyticsVimeoGA} from "pcommanalytics";`
-
-Modules must still be instantiated, i.e.
-
-`new PcommAnalyticsExternalLinks();` or `window.vimeoGA = new PcommAnalyticsVimeoGA();`
 
 #### PcommAnalyticsExternalLinks
 
@@ -68,36 +52,26 @@ In order to eliminate confusion and case sensitive values, each value is convert
 ___
 #### Tracking via custom partial or function
 
-The `PcommAnalytics` class can be imported into your JavaScript partials for tracking custom events.
+The `PcommAnalytics` class can be used in your JavaScript partials for tracking custom events.
 
-1. Import the class from the appropriate folder:
-    
-    `import {PcommAnalytics} from 'pcommanalytics'`
-2. Create your event: 
+1. Create your event: 
 
     `const event = {'label': 'label test','category': 'category test','action': 'action test','value': 'value test'};` 
-3. Instantiate the class:
-
-    `const analytics = new PcommAnalytics(event);`
+2. Instantiate the class:
+    `window.PcommAnalytics.trackEvent(event);`
     
-    Note that the event is passed to the class.
-4. Track the event:
-
-    `analytics.trackEvent();` 
-___
+__
 ### Vimeo GA
 
-`new PcommAnalyticsVimeoGA();` will scan your page for available Vimeo videos and add GA tracking to them automatically.
+This scans your page for available Vimeo videos and add GA tracking to them automatically.
 
 #### Dynamic Rendering of Vimeo iFrames
 
 If you need to dynamically render Vimeo iframes, there are a few additional steps to take.
 
-1. Import the script into your component `import {PcommAnalyticsVimeoGA} from "pcommanalytics";`
-2. Make it accessible in your component `const vimeoGA = new PcommAnalyticsVimeoGA();`
-3. Get or create the iFrame as an element `var el = this.$refs.player.$el.childNodes[0];` (your method will vary)
-4. Delete data-listener_attached `delete el.dataset.listener_attached;` (or it will not attach a new listener)
-5. Register the new video `vimeoGA.processIframe(el, index);`
+1. Get or create the iFrame as an element `var el = this.$refs.player.$el.childNodes[0];` (your method will vary)
+2. Delete data-listener_attached `delete el.dataset.listener_attached;` (or it will not attach a new listener)
+3. Register the new video `window.PcommAnalytics.vimeo.processIframe(el, index);`
 ___
 ### Testing
 
@@ -109,6 +83,8 @@ If Google Analytics has not been set up on a site, there will be a console log i
 
 ___
 ## Version Notes
+
+2.0.0: adds compiled dist folder, window tracking, legacy tracking
 
 1.0.11: IE bugfix: Use indexOf instead of includes
 
