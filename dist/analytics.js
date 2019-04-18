@@ -581,11 +581,6 @@ function (_PcommAnalytics) {
   }, {
     key: "onMessageReceived",
     value: function onMessageReceived(e) {
-      if (e.origin.replace('https:', 'http:') !== "http://player.vimeo.com" || typeof ga !== "function") {
-        console.warn('Tracker is missing!');
-        return;
-      }
-
       var data = e.data;
 
       if (typeof data === 'string') {
