@@ -231,6 +231,8 @@ function () {
       if (this.testEnv()) {
         console.log('ga tracking event:', event);
       }
+
+      return true;
     }
   }]);
 
