@@ -121,7 +121,18 @@ if (window.location.hash === '#analyticsTest') {
 
 
 window.pcommAnalytics = {
-  trackAnalyticsEvent: window.PcommAnalytics.trackEvent
+  trackAnalyticsEvent: function trackAnalyticsEvent(event) {
+    if (!window.ga) {
+      return false;
+    }
+
+    window.ga('send', {
+      hitType: 'event',
+      eventCategory: event.category,
+      eventAction: event.action,
+      eventLabel: event.label
+    });
+  }
 }; // export {
 //   pcommAnalyticsTrackEvent,
 //   PcommAnalyticsDataGa,
@@ -762,7 +773,7 @@ function (_PcommAnalytics) {
 /*! exports provided: name, version, description, main, scripts, repository, keywords, author, license, bugs, homepage, dependencies, devDependencies, default */
 /***/ (function(module) {
 
-module.exports = {"name":"pcommanalytics","version":"2.0.0","description":"PartnerComm analytics platform","main":"dist/analytics.js","scripts":{"dev":"NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js","watch":"NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js","production":"NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"},"repository":{"type":"git","url":"git+https://github.com/PartnerComm/PcommAnalytics.git"},"keywords":["analytics"],"author":"PartnerComm","license":"ISC","bugs":{"url":"https://github.com/PartnerComm/PcommAnalytics/issues"},"homepage":"https://github.com/PartnerComm/PcommAnalytics#readme","dependencies":{"laravel-mix":"^4.0.15"},"devDependencies":{"vue-template-compiler":"^2.6.10"}};
+module.exports = {"name":"pcommanalytics","version":"2.0.1","description":"PartnerComm analytics platform","main":"dist/analytics.js","scripts":{"dev":"NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js","watch":"NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js","production":"NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"},"repository":{"type":"git","url":"git+https://github.com/PartnerComm/PcommAnalytics.git"},"keywords":["analytics"],"author":"PartnerComm","license":"ISC","bugs":{"url":"https://github.com/PartnerComm/PcommAnalytics/issues"},"homepage":"https://github.com/PartnerComm/PcommAnalytics#readme","dependencies":{"laravel-mix":"^4.0.15"},"devDependencies":{"vue-template-compiler":"^2.6.10"}};
 
 /***/ }),
 
