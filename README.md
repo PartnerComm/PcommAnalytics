@@ -83,6 +83,8 @@ If Google Analytics has not been set up on a site, there will be a console log i
 
 ___
 ## Version Notes
+2.0.4: getLinkType should return false if undefined
+
 2.0.3: fix e === undefined error
 
 2.0.2: add ability to call track external links after page load
