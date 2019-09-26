@@ -83,6 +83,9 @@ If Google Analytics has not been set up on a site, there will be a console log i
 
 ___
 ## Version Notes
+2.0.2: add ability to call track external links after page load
+
+2.0.1: Resolve undefined error when no vimeo videos exist
 
 2.0.0: adds compiled dist folder, window tracking, legacy tracking
 
