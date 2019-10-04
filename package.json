@@ -1,6 +1,6 @@
 {
   "name": "pcommanalytics",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "PartnerComm analytics platform",
   "main": "dist/analytics.js",
   "scripts": {
