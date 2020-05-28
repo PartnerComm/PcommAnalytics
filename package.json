@@ -1,6 +1,6 @@
 {
   "name": "pcommanalytics",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "PartnerComm analytics platform",
   "main": "dist/analytics.js",
   "scripts": {
@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/PartnerComm/PcommAnalytics#readme",
   "dependencies": {
-    "laravel-mix": "^4.0.15"
+    "laravel-mix": "^4.1.4"
   },
   "devDependencies": {
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.11"
   }
 }

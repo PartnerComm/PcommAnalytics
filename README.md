@@ -83,6 +83,8 @@ If Google Analytics has not been set up on a site, there will be a console log i
 
 ___
 ## Version Notes
+2.0.7: External Link Tracking: do not track as external link if no el.hostname
+
 2.0.6: goToHref: move prevent default to after target check
 
 2.0.5: Do not goToHref if target is blank
