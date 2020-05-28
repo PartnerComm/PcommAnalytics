@@ -1,485 +1,855 @@
-!function (e) {
-  var t = {};
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ({
 
-  function n(o) {
-    if (t[o]) return t[o].exports;
-    var r = t[o] = {i: o, l: !1, exports: {}};
-    return e[o].call(r.exports, r, r.exports, n), r.l = !0, r.exports
+/***/ "./lib/analytics.js":
+/*!**************************!*\
+  !*** ./lib/analytics.js ***!
+  \**************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core_PcommAnalytics__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core/PcommAnalytics */ "./lib/core/PcommAnalytics.js");
+/* harmony import */ var _plugins_PcommAnalyticsDataGa__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./plugins/PcommAnalyticsDataGa */ "./lib/plugins/PcommAnalyticsDataGa.js");
+/* harmony import */ var _plugins_PcommAnalyticsExternalLinks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./plugins/PcommAnalyticsExternalLinks */ "./lib/plugins/PcommAnalyticsExternalLinks.js");
+/* harmony import */ var _plugins_PcommAnalyticsVimeoGa__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./plugins/PcommAnalyticsVimeoGa */ "./lib/plugins/PcommAnalyticsVimeoGa.js");
+
+
+
+
+new _core_PcommAnalytics__WEBPACK_IMPORTED_MODULE_0__["PcommAnalytics"]();
+new _plugins_PcommAnalyticsDataGa__WEBPACK_IMPORTED_MODULE_1__["PcommAnalyticsDataGa"]();
+new _plugins_PcommAnalyticsExternalLinks__WEBPACK_IMPORTED_MODULE_2__["PcommAnalyticsExternalLinks"]();
+new _plugins_PcommAnalyticsVimeoGa__WEBPACK_IMPORTED_MODULE_3__["PcommAnalyticsVimeoGA"]();
+
+if (window.location.hash === '#analyticsTest') {
+  /* CREATE AN EVENT */
+  var event = {
+    'label': 'label test',
+    'category': 'category test',
+    'action': 'action test',
+    'value': 0
+  };
+  window.PcommAnalytics.trackEvent(event);
+} // legacy tracking
+
+
+window.pcommAnalytics = {
+  trackAnalyticsEvent: function trackAnalyticsEvent(event) {
+    if (!window.ga) {
+      return false;
+    }
+
+    window.ga('send', {
+      hitType: 'event',
+      eventCategory: event.category,
+      eventAction: event.action,
+      eventLabel: event.label
+    });
   }
+}; // export {
+//   pcommAnalyticsTrackEvent,
+//   PcommAnalyticsDataGa,
+//   PcommAnalyticsExternalLinks,
+//   PcommAnalyticsVimeoGA
+// };
 
-  n.m = e, n.c = t, n.d = function (e, t, o) {
-    n.o(e, t) || Object.defineProperty(e, t, {enumerable: !0, get: o})
-  }, n.r = function (e) {
-    "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {value: "Module"}), Object.defineProperty(e, "__esModule", {value: !0})
-  }, n.t = function (e, t) {
-    if (1 & t && (e = n(e)), 8 & t) return e;
-    if (4 & t && "object" == typeof e && e && e.__esModule) return e;
-    var o = Object.create(null);
-    if (n.r(o), Object.defineProperty(o, "default", {
-      enumerable: !0,
-      value: e
-    }), 2 & t && "string" != typeof e) for (var r in e) n.d(o, r, function (t) {
-      return e[t]
-    }.bind(null, r));
-    return o
-  }, n.n = function (e) {
-    var t = e && e.__esModule ? function () {
-      return e.default
-    } : function () {
-      return e
+/***/ }),
+
+/***/ "./lib/core/PcommAnalytics.js":
+/*!************************************!*\
+  !*** ./lib/core/PcommAnalytics.js ***!
+  \************************************/
+/*! exports provided: PcommAnalytics */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PcommAnalytics", function() { return PcommAnalytics; });
+/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../package.json */ "./package.json");
+var _package_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../package.json */ "./package.json", 1);
+/* harmony import */ var _modules_testEnv__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/testEnv */ "./lib/core/modules/testEnv.js");
+/* harmony import */ var _modules_testEnv__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_testEnv__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _modules_logEvent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/logEvent */ "./lib/core/modules/logEvent.js");
+/* harmony import */ var _modules_logEvent__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_logEvent__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _modules_goToHref__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/goToHref */ "./lib/core/modules/goToHref.js");
+/* harmony import */ var _modules_goToHref__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_modules_goToHref__WEBPACK_IMPORTED_MODULE_3__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+/*
+* Pcomm Analytics Class for tracking Google Analytics Events
+*
+* 1. import analytics into your project:
+*   import "pcommanalytics";
+* 2. create your event
+*   const event = {'label': 'test', 'category': 'test category', 'action': 'action test'};
+* 3. track the event
+*   PcommAnalytics.trackEvent(event)
+*
+* Events are automatically logged in the console on pcommstaging and localhost
+*
+*/
+
+
+
+
+
+var PcommAnalytics = /*#__PURE__*/function () {
+  function PcommAnalytics() {
+    _classCallCheck(this, PcommAnalytics);
+
+    window.PcommAnalytics = window.PcommAnalytics || {
+      version: _package_json__WEBPACK_IMPORTED_MODULE_0__.version,
+      trackEvent: this.trackEvent,
+      logEvent: _modules_logEvent__WEBPACK_IMPORTED_MODULE_2___default.a,
+      testEnv: _modules_testEnv__WEBPACK_IMPORTED_MODULE_1___default.a,
+      goToHref: _modules_goToHref__WEBPACK_IMPORTED_MODULE_3___default.a
     };
-    return n.d(t, "a", t), t
-  }, n.o = function (e, t) {
-    return Object.prototype.hasOwnProperty.call(e, t)
-  }, n.p = "/", n(n.s = 1)
-}([function (e) {
-  e.exports = JSON.parse('{"name":"pcommanalytics","version":"2.0.9","description":"PartnerComm analytics platform","main":"dist/analytics.js","scripts":{"dev":"NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js","watch":"NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js","production":"NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"},"repository":{"type":"git","url":"git+https://github.com/PartnerComm/PcommAnalytics.git"},"keywords":["analytics"],"author":"PartnerComm","license":"ISC","bugs":{"url":"https://github.com/PartnerComm/PcommAnalytics/issues"},"homepage":"https://github.com/PartnerComm/PcommAnalytics#readme","dependencies":{"laravel-mix":"^4.1.4"},"devDependencies":{"vue-template-compiler":"^2.6.11"}}')
-}, function (e, t, n) {
-  e.exports = n(2)
-}, function (e, t, n) {
-  "use strict";
-  n.r(t);
-  var o = n(0);
+  }
 
-  function r(e, t) {
-    for (var n = 0; n < t.length; n++) {
-      var o = t[n];
-      o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, o.key, o)
+  _createClass(PcommAnalytics, [{
+    key: "trackEvent",
+    value: function trackEvent(event) {
+      _modules_logEvent__WEBPACK_IMPORTED_MODULE_2___default()(event);
+
+      if (typeof ga === "undefined") {
+        console.log('GA not set up in this environment');
+        return true;
+      } // set defaults
+
+
+      var category = event.category ? event.category.toString().toLowerCase() : 'site';
+      var action = event.action ? event.action.toString().toLowerCase() : 'general action';
+      var label = event.label ? event.label.toString().toLowerCase() : '';
+      var value = event.value ? event.value : 0;
+      var noninteraction = event.noninteraction || true; // send the event
+
+      ga('send', 'event', {
+        'eventCategory': category,
+        // Required
+        'eventAction': action,
+        // Required
+        'eventLabel': label,
+        'eventValue': value,
+        'nonInteraction': noninteraction
+      });
     }
+  }]);
+
+  return PcommAnalytics;
+}();
+
+
+
+/***/ }),
+
+/***/ "./lib/core/modules/goToHref.js":
+/*!**************************************!*\
+  !*** ./lib/core/modules/goToHref.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = function (el) {
+  var e = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+  if (!el.href || e.metaKey || e.ctrlKey || el.hostname === window.location.hostname || el.getAttribute('target') === '_blank') {
+    return false;
   }
 
-  var i = function () {
-    function e() {
-      !function (e, t) {
-        if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-      }(this, e), window.PcommAnalytics = window.PcommAnalytics || {
-        version: o.version,
-        trackEvent: this.trackEvent,
-        logEvent: this.logEvent,
-        testEnv: this.testEnv,
-        goToHref: this.goToHref
-      }
+  var target = el.getAttribute('target'); // if (target === '_blank') {
+  //   return false;
+  // }
+
+  if (e.preventDefault) e.preventDefault();
+  window.setTimeout(function () {
+    window.open(el.href, target);
+  }, // slow down redirect to eliminate any sort of race condition
+  100);
+  return el.href;
+};
+
+/***/ }),
+
+/***/ "./lib/core/modules/logEvent.js":
+/*!**************************************!*\
+  !*** ./lib/core/modules/logEvent.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var testEnv = __webpack_require__(/*! ./testEnv */ "./lib/core/modules/testEnv.js");
+
+module.exports = function (event) {
+  if (testEnv()) {
+    console.log('ga tracking event:', event);
+  }
+
+  return event;
+};
+
+/***/ }),
+
+/***/ "./lib/core/modules/testEnv.js":
+/*!*************************************!*\
+  !*** ./lib/core/modules/testEnv.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = function () {
+  var a = window.location.hostname;
+  return a === 'localhost' || a.indexOf('pcommstaging') >= 0;
+};
+
+/***/ }),
+
+/***/ "./lib/plugins/PcommAnalyticsDataGa.js":
+/*!*********************************************!*\
+  !*** ./lib/plugins/PcommAnalyticsDataGa.js ***!
+  \*********************************************/
+/*! exports provided: PcommAnalyticsDataGa */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PcommAnalyticsDataGa", function() { return PcommAnalyticsDataGa; });
+/* harmony import */ var _core_PcommAnalytics__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/PcommAnalytics */ "./lib/core/PcommAnalytics.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+/*
+* Automatically create a click zone for the listener by adding data attributes like so:
+*
+*   data-ga="true" (required)
+*   data-ga-label="My Label" (optional, recommended)
+*   data-ga-action="My Action" (optional)
+*   data-ga-category="click zone" (optional)
+*   data-ga-value="0" (optional)
+*
+*/
+
+
+var PcommAnalyticsDataGa = /*#__PURE__*/function (_PcommAnalytics) {
+  _inherits(PcommAnalyticsDataGa, _PcommAnalytics);
+
+  var _super = _createSuper(PcommAnalyticsDataGa);
+
+  function PcommAnalyticsDataGa() {
+    var _this;
+
+    _classCallCheck(this, PcommAnalyticsDataGa);
+
+    _this = _super.call(this);
+
+    _this.addClickListener();
+
+    window.PcommAnalytics = window.PcommAnalytics || {};
+    window.PcommAnalytics.dataGa = {
+      addClickListener: _this.addClickListener
+    };
+    return _this;
+  }
+
+  _createClass(PcommAnalyticsDataGa, [{
+    key: "addClickListener",
+    value: function addClickListener() {
+      var _this2 = this;
+
+      var elements = document.querySelectorAll('[data-ga]');
+      [].forEach.call(elements, function (el) {
+        el.onclick = function (e) {
+          // build the ga event
+          var event = {
+            category: el.getAttribute('data-ga-category') || 'click-tracker',
+            action: el.getAttribute('data-ga-action') || 'click',
+            label: el.getAttribute('data-ga-label') || el.innerText.toLowerCase().trim(),
+            value: el.getAttribute('data-ga-value') || 0
+          }; // track the event
+
+          _this2.trackEvent(event); // go to the href
+
+
+          _this2.goToHref(el, e);
+        };
+      });
     }
+  }]);
 
-    var t, n, i;
-    return t = e, (n = [{
-      key: "goToHref", value: function (e, t) {
-        if (!e.href || t.metaKey || t.ctrlKey || e.hostname === window.location.hostname || "_blank" !== e.getAttribute("target")) return !1;
-        var n = e.getAttribute("target");
-        if ("_blank" === n) return !1;
-        t.preventDefault(), window.setTimeout((function () {
-          window.open(e.href, n)
-        }), 100)
+  return PcommAnalyticsDataGa;
+}(_core_PcommAnalytics__WEBPACK_IMPORTED_MODULE_0__["PcommAnalytics"]);
+
+
+
+/***/ }),
+
+/***/ "./lib/plugins/PcommAnalyticsExternalLinks.js":
+/*!****************************************************!*\
+  !*** ./lib/plugins/PcommAnalyticsExternalLinks.js ***!
+  \****************************************************/
+/*! exports provided: PcommAnalyticsExternalLinks */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PcommAnalyticsExternalLinks", function() { return PcommAnalyticsExternalLinks; });
+/* harmony import */ var _core_PcommAnalytics__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/PcommAnalytics */ "./lib/core/PcommAnalytics.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+/*
+* Track all external links
+* This track event occurs in addition to the data-ga tracking
+*/
+
+
+var PcommAnalyticsExternalLinks = /*#__PURE__*/function (_PcommAnalytics) {
+  _inherits(PcommAnalyticsExternalLinks, _PcommAnalytics);
+
+  var _super = _createSuper(PcommAnalyticsExternalLinks);
+
+  function PcommAnalyticsExternalLinks() {
+    var _this;
+
+    _classCallCheck(this, PcommAnalyticsExternalLinks);
+
+    _this = _super.call(this);
+
+    _this.track();
+
+    window.PcommAnalytics = window.PcommAnalytics || {};
+    window.PcommAnalytics.externalLinks = {
+      track: _this.track,
+      getLinkType: _this.getLinkType
+    };
+    return _this;
+  }
+
+  _createClass(PcommAnalyticsExternalLinks, [{
+    key: "track",
+    value: function track(elements) {
+      var _this2 = this;
+
+      if (!elements) {
+        elements = document.querySelectorAll('a');
       }
-    }, {
-      key: "trackEvent", value: function (e) {
-        if (this.logEvent(e), "undefined" == typeof ga) return console.log("GA not set up in this environment"), !0;
-        var t = e.category ? e.category.toString().toLowerCase() : "site",
-          n = e.action ? e.action.toString().toLowerCase() : "general action",
-          o = e.label ? e.label.toString().toLowerCase() : "", r = e.value ? e.value : 0, i = e.noninteraction || !0;
-        ga("send", "event", {eventCategory: t, eventAction: n, eventLabel: o, eventValue: r, nonInteraction: i})
-      }
-    }, {
-      key: "testEnv", value: function () {
-        var e = window.location.hostname;
-        return "localhost" === e || e.indexOf("pcommstaging") >= 0
-      }
-    }, {
-      key: "logEvent", value: function (e) {
-        return this.testEnv() && console.log("ga tracking event:", e), !0
-      }
-    }]) && r(t.prototype, n), i && r(t, i), e
-  }();
 
-  function a(e) {
-    return (a = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (e) {
-      return typeof e
-    } : function (e) {
-      return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
-    })(e)
-  }
-
-  function c(e, t) {
-    for (var n = 0; n < t.length; n++) {
-      var o = t[n];
-      o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, o.key, o)
-    }
-  }
-
-  function s(e, t) {
-    return (s = Object.setPrototypeOf || function (e, t) {
-      return e.__proto__ = t, e
-    })(e, t)
-  }
-
-  function u(e) {
-    var t = function () {
-      if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
-      if (Reflect.construct.sham) return !1;
-      if ("function" == typeof Proxy) return !0;
-      try {
-        return Date.prototype.toString.call(Reflect.construct(Date, [], (function () {
-        }))), !0
-      } catch (e) {
-        return !1
-      }
-    }();
-    return function () {
-      var n, o = f(e);
-      if (t) {
-        var r = f(this).constructor;
-        n = Reflect.construct(o, arguments, r)
-      } else n = o.apply(this, arguments);
-      return l(this, n)
-    }
-  }
-
-  function l(e, t) {
-    return !t || "object" !== a(t) && "function" != typeof t ? function (e) {
-      if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-      return e
-    }(e) : t
-  }
-
-  function f(e) {
-    return (f = Object.setPrototypeOf ? Object.getPrototypeOf : function (e) {
-      return e.__proto__ || Object.getPrototypeOf(e)
-    })(e)
-  }
-
-  var p = function (e) {
-    !function (e, t) {
-      if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function");
-      e.prototype = Object.create(t && t.prototype, {
-        constructor: {
-          value: e,
-          writable: !0,
-          configurable: !0
-        }
-      }), t && s(e, t)
-    }(i, e);
-    var t, n, o, r = u(i);
-
-    function i() {
-      var e;
-      return function (e, t) {
-        if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-      }(this, i), (e = r.call(this)).addClickListener(), window.PcommAnalytics = window.PcommAnalytics || {}, window.PcommAnalytics.dataGa = {addClickListener: e.addClickListener}, e
-    }
-
-    return t = i, (n = [{
-      key: "addClickListener", value: function () {
-        var e = this, t = document.querySelectorAll("[data-ga]");
-        [].forEach.call(t, (function (t) {
-          t.onclick = function (n) {
-            var o = {
-              category: t.getAttribute("data-ga-category") || "click-tracker",
-              action: t.getAttribute("data-ga-action") || "click",
-              label: t.getAttribute("data-ga-label") || t.innerText.toLowerCase().trim(),
-              value: t.getAttribute("data-ga-value") || 0
-            };
-            e.trackEvent(o), e.goToHref(t, n)
+      [].forEach.call(elements, function (el) {
+        try {
+          if (!el.hostname || el.hostname === window.location.hostname || el.hostname === window.location.host || !el.href) {
+            return false;
           }
-        }))
-      }
-    }]) && c(t.prototype, n), o && c(t, o), i
-  }(i);
+        } catch (e) {
+          var url = el.getAttribute('href');
 
-  function d(e) {
-    return (d = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (e) {
-      return typeof e
-    } : function (e) {
-      return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
-    })(e)
-  }
-
-  function y(e, t) {
-    for (var n = 0; n < t.length; n++) {
-      var o = t[n];
-      o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, o.key, o)
-    }
-  }
-
-  function v(e, t) {
-    return (v = Object.setPrototypeOf || function (e, t) {
-      return e.__proto__ = t, e
-    })(e, t)
-  }
-
-  function m(e) {
-    var t = function () {
-      if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
-      if (Reflect.construct.sham) return !1;
-      if ("function" == typeof Proxy) return !0;
-      try {
-        return Date.prototype.toString.call(Reflect.construct(Date, [], (function () {
-        }))), !0
-      } catch (e) {
-        return !1
-      }
-    }();
-    return function () {
-      var n, o = g(e);
-      if (t) {
-        var r = g(this).constructor;
-        n = Reflect.construct(o, arguments, r)
-      } else n = o.apply(this, arguments);
-      return b(this, n)
-    }
-  }
-
-  function b(e, t) {
-    return !t || "object" !== d(t) && "function" != typeof t ? function (e) {
-      if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-      return e
-    }(e) : t
-  }
-
-  function g(e) {
-    return (g = Object.setPrototypeOf ? Object.getPrototypeOf : function (e) {
-      return e.__proto__ || Object.getPrototypeOf(e)
-    })(e)
-  }
-
-  var h = function (e) {
-    !function (e, t) {
-      if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function");
-      e.prototype = Object.create(t && t.prototype, {
-        constructor: {
-          value: e,
-          writable: !0,
-          configurable: !0
-        }
-      }), t && v(e, t)
-    }(i, e);
-    var t, n, o, r = m(i);
-
-    function i() {
-      var e;
-      return function (e, t) {
-        if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-      }(this, i), (e = r.call(this)).track(), window.PcommAnalytics = window.PcommAnalytics || {}, window.PcommAnalytics.externalLinks = {
-        track: e.track,
-        getLinkType: e.getLinkType
-      }, e
-    }
-
-    return t = i, (n = [{
-      key: "track", value: function (e) {
-        var t = this;
-        e || (e = document.querySelectorAll("a")), [].forEach.call(e, (function (e) {
-          try {
-            if (!e.hostname || e.hostname === window.location.hostname || e.hostname === window.location.host || !e.href) return !1
-          } catch (t) {
-            var n = e.getAttribute("href");
-            if (!n) return !1;
-            if ((n.indexOf("//") > -1 ? n.split("/")[2] : n.split("/")[0]).split(":")[0].split("?")[0] === window.location.hostname) return !1
+          if (!url) {
+            return false;
           }
-          e.onclick = function (n) {
-            var o = {category: "links", action: t.getLinkType(e.href), label: e.href};
-            window.PcommAnalytics.trackEvent(o), window.PcommAnalytics.goToHref(e, n)
-          }
-        }))
-      }
-    }, {
-      key: "getLinkType", value: function (e) {
-        return void 0 !== e && (e.indexOf("mailto:") >= 0 ? "email" : e.indexOf("tel:") >= 0 ? "phone" : new RegExp(/\.(doc|docx*|xlsx*|ppt|pptx*|zip|pdf|xls|xlsx)$/i).test(e) ? "download" : "external link")
-      }
-    }]) && y(t.prototype, n), o && y(t, o), i
-  }(i);
 
-  function w(e) {
-    return (w = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (e) {
-      return typeof e
-    } : function (e) {
-      return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
-    })(e)
-  }
+          var hostname; //find & remove protocol (http, ftp, etc.) and get hostname
 
-  function k(e, t) {
-    for (var n = 0; n < t.length; n++) {
-      var o = t[n];
-      o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, o.key, o)
-    }
-  }
+          if (url.indexOf("//") > -1) {
+            hostname = url.split('/')[2];
+          } else {
+            hostname = url.split('/')[0];
+          } //find & remove port number
 
-  function P(e, t) {
-    return (P = Object.setPrototypeOf || function (e, t) {
-      return e.__proto__ = t, e
-    })(e, t)
-  }
 
-  function E(e) {
-    var t = function () {
-      if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
-      if (Reflect.construct.sham) return !1;
-      if ("function" == typeof Proxy) return !0;
-      try {
-        return Date.prototype.toString.call(Reflect.construct(Date, [], (function () {
-        }))), !0
-      } catch (e) {
-        return !1
-      }
-    }();
-    return function () {
-      var n, o = O(e);
-      if (t) {
-        var r = O(this).constructor;
-        n = Reflect.construct(o, arguments, r)
-      } else n = o.apply(this, arguments);
-      return _(this, n)
-    }
-  }
+          hostname = hostname.split(':')[0]; //find & remove "?"
 
-  function _(e, t) {
-    return !t || "object" !== w(t) && "function" != typeof t ? function (e) {
-      if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-      return e
-    }(e) : t
-  }
+          hostname = hostname.split('?')[0];
 
-  function O(e) {
-    return (O = Object.setPrototypeOf ? Object.getPrototypeOf : function (e) {
-      return e.__proto__ || Object.getPrototypeOf(e)
-    })(e)
-  }
-
-  var A = function (e) {
-    !function (e, t) {
-      if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function");
-      e.prototype = Object.create(t && t.prototype, {
-        constructor: {
-          value: e,
-          writable: !0,
-          configurable: !0
-        }
-      }), t && P(e, t)
-    }(i, e);
-    var t, n, o, r = E(i);
-
-    function i() {
-      var e;
-      return function (e, t) {
-        if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-      }(this, i), e = r.call(this), window.PcommAnalytics = window.PcommAnalytics || {}, window.PcommAnalytics.vimeo = {
-        init: e.init,
-        eventMarkers: {},
-        processIframe: e.processIframe,
-        onMessageReceived: e.onMessageReceived,
-        getLabel: e.getLabel,
-        post: e.post,
-        onReady: e.onReady,
-        onPause: e.onPause,
-        onPlayProgress: e.onPlayProgress,
-        sendEvent: e.sendEvent
-      }, e.init(), e.listening = !1, e
-    }
-
-    return t = i, (n = [{
-      key: "init", value: function () {
-        var e = this, t = document.querySelectorAll('iframe[src*="player.vimeo.com"]');
-        [].forEach.call(t, (function (t, n) {
-          void 0 === t.dataset.player_index && e.processIframe(t, n)
-        })), this.listening || (this.listening = !0, window.addEventListener("message", (function (t) {
-          return e.onMessageReceived(t)
-        }), !1))
-      }
-    }, {
-      key: "processIframe", value: function (e, t) {
-        var n = "pcomm-ga-vimeo-player-" + t, o = e.getAttribute("src").split("?")[0] + "?player_id=" + n;
-        e.setAttribute("src", o), e.setAttribute("id", n), e.dataset.player_index = t, window.PcommAnalytics.vimeo.eventMarkers[t] = {
-          progress25: !1,
-          progress50: !1,
-          progress75: !1,
-          videoPlayed: !1,
-          videoPaused: !1,
-          videoResumed: !1,
-          videoSeeking: !1,
-          videoCompleted: !1,
-          timePercentComplete: 0
-        }
-      }
-    }, {
-      key: "onMessageReceived", value: function (e) {
-        if (!e.data) return !1;
-        var t = e.data;
-        if ("string" == typeof t) {
-          if (!t) return !1;
-          try {
-            t = JSON.parse(t)
-          } catch (e) {
-            t = !1, console.log(e)
+          if (hostname === window.location.hostname) {
+            return false;
           }
         }
-        if (!t || !t.player_id) return !1;
-        var n = document.getElementById(t.player_id);
-        if (n) {
-          var o = n.dataset.player_index, r = window.PcommAnalytics.vimeo.eventMarkers[o];
-          switch (t.event) {
-            case"ready":
-              this.onReady();
-              break;
-            case"playProgress":
-              this.onPlayProgress(t.data, n);
-              break;
-            case"seek":
-              n.dataset.seek && !r.videoSeeking && (this.sendEvent(n, "Skipped video forward or backward"), r.videoSeeking = !0);
-              break;
-            case"play":
-              r.videoPlayed ? !r.videoResumed && r.videoPaused && (this.sendEvent(n, "Resumed video"), r.videoResumed = !0) : (this.sendEvent(n, "Started video"), r.videoPlayed = !0);
-              break;
-            case"pause":
-              this.onPause(n);
-              break;
-            case"finish":
-              r.videoCompleted || (this.sendEvent(n, "Completed video"), r.videoCompleted = !0)
-          }
-          window.PcommAnalytics.vimeo.eventMarkers[o] = r
+
+        el.onclick = function (e) {
+          // build the ga event
+          var event = {
+            category: 'links',
+            action: _this2.getLinkType(el.href),
+            label: el.href
+          }; // track the event
+
+          window.PcommAnalytics.trackEvent(event); // go to the href
+
+          window.PcommAnalytics.goToHref(el, e);
+        };
+      });
+    }
+  }, {
+    key: "getLinkType",
+    value: function getLinkType(url) {
+      if (url === undefined) {
+        return false;
+      }
+
+      if (url.indexOf('mailto:') >= 0) {
+        return 'email';
+      }
+
+      if (url.indexOf('tel:') >= 0) {
+        return 'phone';
+      }
+
+      var fileTypes = new RegExp(/\.(doc|docx*|xlsx*|ppt|pptx*|zip|pdf|xls|xlsx)$/i);
+
+      if (fileTypes.test(url)) {
+        return 'download';
+      }
+
+      return 'external link';
+    }
+  }]);
+
+  return PcommAnalyticsExternalLinks;
+}(_core_PcommAnalytics__WEBPACK_IMPORTED_MODULE_0__["PcommAnalytics"]);
+
+
+
+/***/ }),
+
+/***/ "./lib/plugins/PcommAnalyticsVimeoGa.js":
+/*!**********************************************!*\
+  !*** ./lib/plugins/PcommAnalyticsVimeoGa.js ***!
+  \**********************************************/
+/*! exports provided: PcommAnalyticsVimeoGA */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PcommAnalyticsVimeoGA", function() { return PcommAnalyticsVimeoGA; });
+/* harmony import */ var _core_PcommAnalytics__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/PcommAnalytics */ "./lib/core/PcommAnalytics.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+/*
+ * PcommAnalyticsVimeoGa.js
+ */
+
+
+var PcommAnalyticsVimeoGA = /*#__PURE__*/function (_PcommAnalytics) {
+  _inherits(PcommAnalyticsVimeoGA, _PcommAnalytics);
+
+  var _super = _createSuper(PcommAnalyticsVimeoGA);
+
+  function PcommAnalyticsVimeoGA() {
+    var _this;
+
+    _classCallCheck(this, PcommAnalyticsVimeoGA);
+
+    _this = _super.call(this);
+    window.PcommAnalytics = window.PcommAnalytics || {};
+    window.PcommAnalytics.vimeo = {
+      init: _this.init,
+      eventMarkers: {},
+      processIframe: _this.processIframe,
+      onMessageReceived: _this.onMessageReceived,
+      getLabel: _this.getLabel,
+      post: _this.post,
+      onReady: _this.onReady,
+      onPause: _this.onPause,
+      onPlayProgress: _this.onPlayProgress,
+      sendEvent: _this.sendEvent
+    };
+
+    _this.init();
+
+    _this.listening = false;
+    return _this;
+  }
+
+  _createClass(PcommAnalyticsVimeoGA, [{
+    key: "init",
+    value: function init() {
+      var _this2 = this;
+
+      var elements = document.querySelectorAll('iframe[src*="player.vimeo.com"]');
+      [].forEach.call(elements, function (el, index) {
+        if (el.dataset.player_index === undefined) {
+          _this2.processIframe(el, index);
+        }
+      }); // Listen for messages from the player
+
+      if (!this.listening) {
+        this.listening = true;
+        window.addEventListener('message', function (e) {
+          return _this2.onMessageReceived(e);
+        }, false);
+      }
+    }
+  }, {
+    key: "processIframe",
+    value: function processIframe(el, index) {
+      var playerIdString = 'pcomm-ga-vimeo-player-' + index;
+      var src = el.getAttribute('src').split('?')[0] + '?player_id=' + playerIdString;
+      el.setAttribute('src', src);
+      el.setAttribute('id', playerIdString);
+      el.dataset.player_index = index;
+      window.PcommAnalytics.vimeo.eventMarkers[index] = {
+        'progress25': false,
+        'progress50': false,
+        'progress75': false,
+        'videoPlayed': false,
+        'videoPaused': false,
+        'videoResumed': false,
+        'videoSeeking': false,
+        'videoCompleted': false,
+        'timePercentComplete': 0
+      };
+    }
+  }, {
+    key: "onMessageReceived",
+    value: function onMessageReceived(e) {
+      if (!e.data) {
+        return false;
+      }
+
+      var data = e.data;
+
+      if (typeof data === 'string') {
+        if (!data) {
+          return false;
+        }
+
+        try {
+          data = JSON.parse(data);
+        } catch (error) {
+          data = false;
+          console.log(error);
         }
       }
-    }, {
-      key: "getLabel", value: function (e) {
-        var t = e.getAttribute("src").split("?")[0];
-        return t = t.replace("https://player.vimeo.com/video/", "")
+
+      if (!data || !data.player_id) {
+        return false;
       }
-    }, {
-      key: "post", value: function (e, t, n) {
-        var o = {method: e};
-        t && (o.value = t);
-        var r = n.getAttribute("src").split("?")[0];
-        n.contentWindow.postMessage(JSON.stringify(o), r)
+
+      var iframeEl = document.getElementById(data.player_id);
+
+      if (!iframeEl) {
+        return;
       }
-    }, {
-      key: "onReady", value: function () {
-        var e = this, t = document.querySelectorAll('iframe[src*="player.vimeo.com"]');
-        [].forEach.call(t, (function (t) {
-          void 0 === t.dataset.listener_attached && (t.dataset.listener_attached = 1, e.post("addEventListener", "play", t), e.post("addEventListener", "seek", t), e.post("addEventListener", "pause", t), e.post("addEventListener", "finish", t), e.post("addEventListener", "playProgress", t))
-        }))
+
+      var index = iframeEl.dataset.player_index;
+      var marker = window.PcommAnalytics.vimeo.eventMarkers[index];
+
+      switch (data.event) {
+        case 'ready':
+          this.onReady();
+          break;
+
+        case 'playProgress':
+          this.onPlayProgress(data.data, iframeEl);
+          break;
+
+        case 'seek':
+          if (iframeEl.dataset.seek && !marker.videoSeeking) {
+            this.sendEvent(iframeEl, 'Skipped video forward or backward');
+            marker.videoSeeking = true; // Avoid subsequent seek trackings
+          }
+
+          break;
+
+        case 'play':
+          if (!marker.videoPlayed) {
+            this.sendEvent(iframeEl, 'Started video');
+            marker.videoPlayed = true; // Avoid subsequent play trackings
+          } else if (!marker.videoResumed && marker.videoPaused) {
+            this.sendEvent(iframeEl, 'Resumed video');
+            marker.videoResumed = true; // Avoid subsequent resume trackings
+          }
+
+          break;
+
+        case 'pause':
+          this.onPause(iframeEl);
+          break;
+
+        case 'finish':
+          if (!marker.videoCompleted) {
+            this.sendEvent(iframeEl, 'Completed video');
+            marker.videoCompleted = true; // Avoid subsequent finish trackings
+          }
+
+          break;
       }
-    }, {
-      key: "onPause", value: function (e) {
-        var t = e.dataset.player_index, n = window.PcommAnalytics.vimeo.eventMarkers[t];
-        n.percent < 99 && !n.videoPaused && (this.sendEvent(e, "Paused video"), n.videoPaused = !0), window.PcommAnalytics.vimeo.eventMarkers[t] = n
-      }
-    }, {
-      key: "onPlayProgress", value: function (e, t) {
-        var n, o = t.dataset.player_index, r = window.PcommAnalytics.vimeo.eventMarkers[o];
-        r.percent = Math.round(100 * e.percent), r.percent > 24 && !r.progress25 && (n = "Played video: 25%", r.progress25 = !0), r.percent > 49 && !r.progress50 && (n = "Played video: 50%", r.progress50 = !0), r.percent > 74 && !r.progress75 && (n = "Played video: 75%", r.progress75 = !0), n && this.sendEvent(t, n), window.PcommAnalytics.vimeo.eventMarkers[o] = r
-      }
-    }, {
-      key: "sendEvent", value: function (e, t) {
-        var n = {category: "Vimeo", action: t, label: this.getLabel(e)};
-        this.trackEvent(n)
-      }
-    }]) && k(t.prototype, n), o && k(t, o), i
-  }(i);
-  if (new i, new p, new h, new A, "#analyticsTest" === window.location.hash) {
-    window.PcommAnalytics.trackEvent({label: "label test", category: "category test", action: "action test", value: 0})
-  }
-  window.pcommAnalytics = {
-    trackAnalyticsEvent: function (e) {
-      if (!window.ga) return !1;
-      window.ga("send", {hitType: "event", eventCategory: e.category, eventAction: e.action, eventLabel: e.label})
+
+      window.PcommAnalytics.vimeo.eventMarkers[index] = marker;
     }
-  }
-}]);
+  }, {
+    key: "getLabel",
+    value: function getLabel(iframeEl) {
+      var label = iframeEl.getAttribute('src').split('?')[0];
+      label = label.replace('https://player.vimeo.com/video/', '');
+      return label;
+    }
+  }, {
+    key: "post",
+    value: function post(action, value, iframe) {
+      var data = {
+        method: action
+      };
+
+      if (value) {
+        data.value = value;
+      } // Source URL
+
+
+      var iframeSrc = iframe.getAttribute('src').split('?')[0];
+      iframe.contentWindow.postMessage(JSON.stringify(data), iframeSrc);
+    }
+  }, {
+    key: "onReady",
+    value: function onReady() {
+      var _this3 = this;
+
+      var elements = document.querySelectorAll('iframe[src*="player.vimeo.com"]');
+      [].forEach.call(elements, function (el) {
+        if (el.dataset.listener_attached === undefined) {
+          el.dataset.listener_attached = 1;
+
+          _this3.post('addEventListener', 'play', el);
+
+          _this3.post('addEventListener', 'seek', el);
+
+          _this3.post('addEventListener', 'pause', el);
+
+          _this3.post('addEventListener', 'finish', el);
+
+          _this3.post('addEventListener', 'playProgress', el);
+        }
+      });
+    }
+  }, {
+    key: "onPause",
+    value: function onPause(iframeEl) {
+      var index = iframeEl.dataset.player_index;
+      var marker = window.PcommAnalytics.vimeo.eventMarkers[index];
+
+      if (marker.percent < 99 && !marker.videoPaused) {
+        this.sendEvent(iframeEl, 'Paused video');
+        marker.videoPaused = true; // Avoid subsequent pause trackings
+      }
+
+      window.PcommAnalytics.vimeo.eventMarkers[index] = marker;
+    }
+  }, {
+    key: "onPlayProgress",
+    value: function onPlayProgress(data, iframeEl) {
+      var progress;
+      var index = iframeEl.dataset.player_index;
+      var marker = window.PcommAnalytics.vimeo.eventMarkers[index];
+      marker.percent = Math.round(data.percent * 100); // Round to a whole number
+
+      if (marker.percent > 24 && !marker.progress25) {
+        progress = 'Played video: 25%';
+        marker.progress25 = true;
+      }
+
+      if (marker.percent > 49 && !marker.progress50) {
+        progress = 'Played video: 50%';
+        marker.progress50 = true;
+      }
+
+      if (marker.percent > 74 && !marker.progress75) {
+        progress = 'Played video: 75%';
+        marker.progress75 = true;
+      }
+
+      if (progress) {
+        this.sendEvent(iframeEl, progress);
+      }
+
+      window.PcommAnalytics.vimeo.eventMarkers[index] = marker;
+    }
+  }, {
+    key: "sendEvent",
+    value: function sendEvent(iframeEl, action) {
+      var event = {
+        category: 'Vimeo',
+        action: action,
+        label: this.getLabel(iframeEl)
+      };
+      this.trackEvent(event);
+    }
+  }]);
+
+  return PcommAnalyticsVimeoGA;
+}(_core_PcommAnalytics__WEBPACK_IMPORTED_MODULE_0__["PcommAnalytics"]);
+
+
+
+/***/ }),
+
+/***/ "./package.json":
+/*!**********************!*\
+  !*** ./package.json ***!
+  \**********************/
+/*! exports provided: name, version, description, main, scripts, repository, keywords, author, license, bugs, homepage, dependencies, devDependencies, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"name\":\"pcommanalytics\",\"version\":\"2.0.9\",\"description\":\"PartnerComm analytics platform\",\"main\":\"dist/analytics.js\",\"scripts\":{\"dev\":\"NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js\",\"watch\":\"NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js\",\"production\":\"NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js\",\"test\":\"mocha\"},\"repository\":{\"type\":\"git\",\"url\":\"git+https://github.com/PartnerComm/PcommAnalytics.git\"},\"keywords\":[\"analytics\"],\"author\":\"PartnerComm\",\"license\":\"ISC\",\"bugs\":{\"url\":\"https://github.com/PartnerComm/PcommAnalytics/issues\"},\"homepage\":\"https://github.com/PartnerComm/PcommAnalytics#readme\",\"dependencies\":{\"laravel-mix\":\"^4.1.4\"},\"devDependencies\":{\"jsdom\":\"16.2.2\",\"jsdom-global\":\"3.0.2\",\"mocha\":\"^7.2.0\",\"vue-template-compiler\":\"^2.6.11\"}}");
+
+/***/ }),
+
+/***/ 0:
+/*!********************************!*\
+  !*** multi ./lib/analytics.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! /Volumes/FAST_STORAGE/github/PcommAnalytics/lib/analytics.js */"./lib/analytics.js");
+
+
+/***/ })
+
+/******/ });
