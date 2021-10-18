@@ -83,6 +83,8 @@ If Google Analytics has not been set up on a site, there will be a console log i
 
 ___
 ## Version Notes
+2.1.1: Added optional label to video iframes for analytics report from QF "analyticsLabel" field.
+
 2.1.0: Update Vimeo tracking to include existing params before adding player ID. This preserves autoplay=1, for example, which may be added in certain circumstances. This feature only works in modern browsers and does not support IE11, which is why I bumped the minor release number to 1 from 0.
 
 2.0.8: External Link Tracking: double check hostname against location.host
