@@ -84,6 +84,8 @@ If Google Analytics has not been set up on a site, there will be a console log i
 ___
 ## Version Notes
 
+2.1.4: Fix gtag parameter names
+
 2.1.3: Update `trackEvent()` to accommodate `gtag`
 
 2.1.2: Fixed an issue with the `data-ga` tag when running the `trackEvent()` function
