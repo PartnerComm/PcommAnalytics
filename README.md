@@ -84,6 +84,8 @@ If Google Analytics has not been set up on a site, there will be a console log i
 ___
 ## Version Notes
 
+2.1.6: Fix `trackEvent()` to return if both `ga` _and_ `gtag` are undefined, not _or_
+
 2.1.5: Update `trackAnalyticsEvent()` to accommodate `gtag`
 
 2.1.4: Fix gtag parameter names
